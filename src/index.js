@@ -12,7 +12,7 @@ const config = {
     messagingSenderId: "678640356038",
     appId: "1:678640356038:web:d60ac09445747ae6fda5c7",
 };
-
+const firebase = window.firebase.initializeApp(config);
 ReactDOM.render(
     <FirebaseContext.Provider value={{ firebase: window.firebase }}>
         <GlobalStyles />
