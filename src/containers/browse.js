@@ -18,7 +18,6 @@ export function BrowseContainer({ slides }) {
         displayName: "Loc",
         photoURL: "1",
     };
-
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
