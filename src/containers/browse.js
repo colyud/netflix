@@ -7,6 +7,7 @@ import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
 
 export function BrowseContainer({ slides }) {
+    const [user, setUser] = useState({});
     const [category, setCategory] = useState("series");
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
@@ -15,10 +16,14 @@ export function BrowseContainer({ slides }) {
 
     const { firebase } = useContext(FirebaseContext);
 
-    const user = {
-        displayName: "Loc",
-        photoURL: "1",
-    };
+    useEffect(() => {
+        const currenUser = firebase.auth().currentUser;
+        if (currenUser) {
+            setUser({ displayName: currenUser.displayName, photoURL: currenUser.photoURL });
+        } else {
+            setUser({ displayName: "", photoURL: "1" });
+        }
+    }, [user]);
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
