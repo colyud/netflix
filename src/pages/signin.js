@@ -23,12 +23,13 @@ export default function Signin() {
             .auth()
             .signInWithEmailAndPassword(emailAddress, password)
             .then(() => {
-                setEmailAddress("");
-                setPassword("");
-                setError("");
                 history.push(ROUTES.BROWSE);
             })
-            .catch((error) => setError(error.message));
+            .catch((error) => {
+                setEmailAddress("");
+                setPassword("");
+                setError(error.message);
+            });
 
         // call in here to firebase to authenticate the user
         // if there's an error, populate the error state
