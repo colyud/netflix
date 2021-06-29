@@ -41,6 +41,7 @@ export const Picture = styled.img`
     height: auto;
     border: 3px solid black;
     cursor: pointer;
+    ${({ svg }) => svg && "filter:invert(1);border: 3px solid white; opacity:0.3   "}
 `;
 
 export const Item = styled.li`
@@ -52,6 +53,7 @@ export const Item = styled.li`
 
     &:hover > ${Picture} {
         border: 3px solid white;
+        opacity: 1;
     }
 
     &:hover ${Name} {

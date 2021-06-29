@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { GlobalStyles } from "./global-styles";
+import { theme } from "./theme.js";
 import { App } from "./app";
 import { FirebaseContext } from "./context/firebase";
+import { ThemeProvider } from "styled-components";
 
 const config = {
     apiKey: "AIzaSyBr8EQsNXudn5shPJ5QZJZnA598mfMlsPg",
@@ -16,8 +18,10 @@ window.firebase.initializeApp(config);
 
 ReactDOM.render(
     <FirebaseContext.Provider value={{ firebase: window.firebase }}>
-        <GlobalStyles />
-        <App />
+        <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            <App />
+        </ThemeProvider>
     </FirebaseContext.Provider>,
     document.getElementById("root")
 );

@@ -17,8 +17,8 @@ Profiles.User = function ProfilesUser({ children, ...restProps }) {
     return <Item {...restProps}>{children}</Item>;
 };
 
-Profiles.Picture = function ProfilesPicture({ src, ...restProps }) {
-    return <Picture {...restProps} src={src ? `/images/users/${src}.png` : "/images/misc/loading.gif"} />;
+Profiles.Picture = function ProfilesPicture({ src, svg, ...restProps }) {
+    return <Picture {...restProps} src={src ? `/images/users/${src}.png` : "/images/misc/loading.gif"} svg={svg ? svg : null} />;
 };
 
 Profiles.Name = function ProfilesName({ children, ...restProps }) {

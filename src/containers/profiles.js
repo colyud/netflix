@@ -15,6 +15,7 @@ export function SelectProfileContainer({ user, setProfile }) {
                 <Profiles.List>
                     {user.map((item, index) => (
                         <Profiles.User
+                            key={index}
                             onClick={() =>
                                 setProfile({
                                     displayName: item.displayName,
@@ -27,8 +28,8 @@ export function SelectProfileContainer({ user, setProfile }) {
                         </Profiles.User>
                     ))}
                     <Profiles.User>
-                        <Profiles.Picture src={6} />
-                        <Profiles.Name>Loc123</Profiles.Name>
+                        <Profiles.Picture src="add" svg />
+                        <Profiles.Name>Add profile</Profiles.Name>
                     </Profiles.User>
                 </Profiles.List>
             </Profiles>
