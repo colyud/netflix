@@ -13,16 +13,22 @@ export function SelectProfileContainer({ user, setProfile }) {
             <Profiles>
                 <Profiles.Title>Who's watching?</Profiles.Title>
                 <Profiles.List>
-                    <Profiles.User
-                        onClick={() =>
-                            setProfile({
-                                displayName: user.displayName,
-                                photoURL: user.photoURL,
-                            })
-                        }
-                    >
-                        <Profiles.Picture src={user.photoURL} />
-                        <Profiles.Name>{user.displayName}</Profiles.Name>
+                    {user.map((item, index) => (
+                        <Profiles.User
+                            onClick={() =>
+                                setProfile({
+                                    displayName: item.displayName,
+                                    photoURL: item.photoURL,
+                                })
+                            }
+                        >
+                            <Profiles.Picture src={item.photoURL} />
+                            <Profiles.Name>{item.displayName}</Profiles.Name>
+                        </Profiles.User>
+                    ))}
+                    <Profiles.User>
+                        <Profiles.Picture src={6} />
+                        <Profiles.Name>Loc123</Profiles.Name>
                     </Profiles.User>
                 </Profiles.List>
             </Profiles>

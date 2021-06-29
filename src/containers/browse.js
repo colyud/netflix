@@ -7,7 +7,7 @@ import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
 
 export function BrowseContainer({ slides }) {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState([]);
     const [category, setCategory] = useState("series");
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
@@ -18,11 +18,18 @@ export function BrowseContainer({ slides }) {
 
     useEffect(() => {
         const current = JSON.parse(localStorage.getItem("authUser"));
-        console.log(current);
-        setUser({
-            displayName: current.displayName,
-            photoURL: current.photoURL,
-        });
+        setUser([
+            ...user,
+            {
+                displayName: current.displayName,
+                photoURL: current.photoURL,
+            },
+            {
+                displayName: "loc",
+                photoURL: 3,
+            },
+        ]);
+        // console.log(user[0]);
     }, []);
     useEffect(() => {
         setTimeout(() => {
@@ -47,7 +54,7 @@ export function BrowseContainer({ slides }) {
 
     return profile.displayName ? (
         <>
-            {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+            {loading ? <Loading src={profile.photoURL} /> : <Loading.ReleaseBody />}
 
             <Header src="joker1" dontShowOnSmallViewPort>
                 <Header.Frame>
@@ -63,11 +70,11 @@ export function BrowseContainer({ slides }) {
                     <Header.Group>
                         <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                         <Header.Profile>
-                            <Header.Picture src={user.photoURL} />
+                            <Header.Picture src={profile.photoURL} />
                             <Header.Dropdown>
                                 <Header.Group>
-                                    <Header.Picture src={user.photoURL} />
-                                    <Header.Link>{user.displayName}</Header.Link>
+                                    <Header.Picture src={profile.photoURL} />
+                                    <Header.Link>{profile.displayName}</Header.Link>
                                 </Header.Group>
                                 <Header.Group>
                                     <Header.Link onClick={() => firebase.auth().signOut()}>Sign out</Header.Link>
