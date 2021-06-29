@@ -17,13 +17,13 @@ export function BrowseContainer({ slides }) {
     const { firebase } = useContext(FirebaseContext);
 
     useEffect(() => {
-        const currenUser = firebase.auth().currentUser;
-        if (currenUser) {
-            setUser({ displayName: currenUser.displayName, photoURL: currenUser.photoURL });
-        } else {
-            setUser({ displayName: "", photoURL: "1" });
-        }
-    }, [user]);
+        const current = JSON.parse(localStorage.getItem("authUser"));
+        console.log(current);
+        setUser({
+            displayName: current.displayName,
+            photoURL: current.photoURL,
+        });
+    }, []);
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
