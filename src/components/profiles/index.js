@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Title, List, Item, Picture, Name } from "./styles/profiles";
+import { Container, Title, List, Item, Picture, Name, Button, Edit } from "./styles/profiles";
 
 export default function Profiles({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>;
@@ -23,4 +23,12 @@ Profiles.Picture = function ProfilesPicture({ src, svg, ...restProps }) {
 
 Profiles.Name = function ProfilesName({ children, ...restProps }) {
     return <Name {...restProps}>{children}</Name>;
+};
+
+Profiles.Button = function ProfilesButton({ children, ...restProps }) {
+    return <Button {...restProps}>{children}</Button>;
+};
+
+Profiles.Edit = function ProfilesEdit({ children, ...restProps }) {
+    return <Edit {...restProps}>{children}</Edit>;
 };

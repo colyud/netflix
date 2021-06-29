@@ -41,6 +41,9 @@ export const Picture = styled.img`
     height: auto;
     border: 3px solid black;
     cursor: pointer;
+    position: relative;
+    z-index: 0;
+    opacity: 0.5;
     ${({ svg }) => svg && "filter:invert(1);border: 3px solid white; opacity:0.3   "}
 `;
 
@@ -50,6 +53,7 @@ export const Item = styled.li`
     list-style-type: none;
     text-align: center;
     margin-right: 30px;
+    position: relative;
 
     &:hover > ${Picture} {
         border: 3px solid white;
@@ -64,4 +68,32 @@ export const Item = styled.li`
     &:last-of-type {
         margin-right: 0;
     }
+`;
+
+export const Button = styled.button`
+    text-transform: uppercase;
+    padding: 1em 2em;
+    background: 000;
+    color: #fff;
+    opacity: 0.3;
+    margin-top: 5em;
+    letter-spacing: 2px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+`;
+
+export const Edit = styled.div`
+    position: absolute;
+    background: url("/images/icons/close.png");
+    filter: invert(1);
+    z-index: 1001;
+    max-width: 50px;
+    max-height: 50px;
+    width: 100%;
+    height: 100%;
+    top: 50px;
+    left: 60px;
 `;

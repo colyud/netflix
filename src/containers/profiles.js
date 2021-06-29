@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header, Profiles } from "../components/";
 import * as ROUTES from "../constants/routes";
 
 export function SelectProfileContainer({ user, setProfile }) {
+    const [manage, setManage] = useState(false);
     return (
         <>
             <Header bg={false}>
@@ -23,6 +24,7 @@ export function SelectProfileContainer({ user, setProfile }) {
                                 })
                             }
                         >
+                            <Profiles.Edit manage={manage} />
                             <Profiles.Picture src={item.photoURL} />
                             <Profiles.Name>{item.displayName}</Profiles.Name>
                         </Profiles.User>
@@ -32,6 +34,7 @@ export function SelectProfileContainer({ user, setProfile }) {
                         <Profiles.Name>Add profile</Profiles.Name>
                     </Profiles.User>
                 </Profiles.List>
+                <Profiles.Button onClick={() => setManage(!manage)}>Manage Profiles</Profiles.Button>
             </Profiles>
         </>
     );
