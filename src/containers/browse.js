@@ -19,7 +19,6 @@ export function BrowseContainer({ slides }) {
     useEffect(() => {
         const current = JSON.parse(localStorage.getItem("authUser"));
         setUser([
-            ...user,
             {
                 displayName: current.displayName,
                 photoURL: current.photoURL,
@@ -29,7 +28,6 @@ export function BrowseContainer({ slides }) {
                 photoURL: 3,
             },
         ]);
-        // console.log(user[0]);
     }, []);
     useEffect(() => {
         setTimeout(() => {
@@ -122,6 +120,6 @@ export function BrowseContainer({ slides }) {
             <FooterContainer />
         </>
     ) : (
-        <SelectProfileContainer user={user} setProfile={setProfile} />
+        <SelectProfileContainer user={user} setUser={setUser} setProfile={setProfile} />
     );
 }

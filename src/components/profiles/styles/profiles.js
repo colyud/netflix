@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Background } from "../../header/styles/header";
 
 export const Container = styled.div`
     display: flex;
@@ -43,8 +44,9 @@ export const Picture = styled.img`
     cursor: pointer;
     position: relative;
     z-index: 0;
-    opacity: 0.5;
+    ${"" /* opacity: 0.5; */}
     ${({ svg }) => svg && "filter:invert(1);border: 3px solid white; opacity:0.3   "}
+    ${({ disabled }) => disabled && "opacity:0.3"}
 `;
 
 export const Item = styled.li`
@@ -58,6 +60,7 @@ export const Item = styled.li`
     &:hover > ${Picture} {
         border: 3px solid white;
         opacity: 1;
+        ${({ disabled }) => disabled && "opacity:0.3"}
     }
 
     &:hover ${Name} {
@@ -70,7 +73,7 @@ export const Item = styled.li`
     }
 `;
 
-export const Button = styled.button`
+export const ManageBtn = styled.button`
     text-transform: uppercase;
     padding: 1em 2em;
     background: 000;
@@ -89,11 +92,55 @@ export const Edit = styled.div`
     position: absolute;
     background: url("/images/icons/close.png");
     filter: invert(1);
-    z-index: 1001;
+    z-index: 10;
     max-width: 50px;
     max-height: 50px;
     width: 100%;
     height: 100%;
     top: 50px;
     left: 60px;
+    opacity: 0.5;
+    display: none;
+    ${({ manage }) => manage && "display:block"};
+
+    &:hover {
+        opacity: 1;
+    }
+`;
+
+export const Form = styled.div`
+    position: absolute;
+    max-width: 1000px;
+    max-height: 500px;
+    width: 100%;
+    height: 100%;
+    background: #121212;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+export const Text = styled.p`
+    font-size: 48px;
+    color: white;
+`;
+export const Input = styled.input`
+    max-width: 300px;
+    width: 100%;
+    height: 32px;
+    font-size: 24px;
+    padding-left: 0.5em;
+`;
+export const ButtonCon = styled.div`
+    display: flex;
+    margin-top: 2em;
+`;
+export const Button = styled.button`
+    margin: 1em;
+    padding: 0.5em 1em;
+    font-size: 20px;
+    cursor: pointer;
+    background: #121212;
+    color: #606060;
+    ${({ submit }) => submit && "background:white"};
 `;
