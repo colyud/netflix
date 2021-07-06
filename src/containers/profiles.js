@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Header, Profiles } from "../components/";
 import * as ROUTES from "../constants/routes";
 
-export function SelectProfileContainer({ user, setUser, setProfile }) {
+export function SelectProfileContainer({ user, profiles, setProfiles, setProfile }) {
     const [manage, setManage] = useState(false);
     const [editProfile, setEitProfile] = useState({});
     const [editName, setEditName] = useState("");
+    const [editPhoto, setEditPhoto] = useState("");
 
-    const allUserFromLocal = JSON.parse(localStorage.getItem("allUser"));
-    allUserFromLocal && setUser(allUserFromLocal);
-    localStorage.setItem("allUser", JSON.stringify(user));
+    localStorage.setItem("profiles", JSON.stringify({ data: profiles, email: user.email }));
 
     return (
         <>
@@ -21,7 +20,7 @@ export function SelectProfileContainer({ user, setUser, setProfile }) {
             <Profiles>
                 <Profiles.Title>Who's watching?</Profiles.Title>
                 <Profiles.List>
-                    {user.map((item, index) => (
+                    {profiles.map((item, index) => (
                         <Profiles.User
                             key={index}
                             disabled={manage}
@@ -38,6 +37,7 @@ export function SelectProfileContainer({ user, setUser, setProfile }) {
                                 onClick={() => {
                                     setEitProfile({ data: item, index: index });
                                     setEditName(item.displayName);
+                                    setEditPhoto(item.photoURL);
                                 }}
                             />
                             <Profiles.Picture disabled={manage} src={item.photoURL} />
@@ -56,11 +56,16 @@ export function SelectProfileContainer({ user, setUser, setProfile }) {
                     <Profiles.Form>
                         <Profiles.Text>Edit Profile</Profiles.Text>
                         <Profiles.Input value={editName} onChange={(e) => setEditName(e.target.value)} />
+                        <Profiles.Input value={editPhoto} onChange={(e) => setEditPhoto(e.target.value)} />
                         <Profiles.ButtonCon>
                             <Profiles.Button
                                 submit
                                 onClick={() => {
-                                    setUser(user.map((item, i) => (editProfile.index === i ? { ...item, displayName: editName } : item)));
+                                    setProfiles(
+                                        profiles.map((item, i) =>
+                                            editProfile.index === i ? { ...item, displayName: editName, photoURL: editPhoto } : item
+                                        )
+                                    );
                                     setEitProfile({});
                                 }}
                             >

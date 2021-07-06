@@ -30,9 +30,6 @@ export default function Signin() {
                 setPassword("");
                 setError(error.message);
             });
-
-        // call in here to firebase to authenticate the user
-        // if there's an error, populate the error state
     };
 
     return (

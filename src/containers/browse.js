@@ -5,9 +5,10 @@ import * as ROUTES from "../constants/routes";
 import { FirebaseContext } from "../context/firebase";
 import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
+import { useAuthListener } from "../hooks";
 
 export function BrowseContainer({ slides }) {
-    const [user, setUser] = useState([]);
+    const [profiles, setProfiles] = useState([]);
     const [category, setCategory] = useState("series");
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
@@ -16,29 +17,38 @@ export function BrowseContainer({ slides }) {
 
     const { firebase } = useContext(FirebaseContext);
 
+    const { user } = useAuthListener();
+
+    const localProfiles = JSON.parse(localStorage.getItem("profiles"));
+
     useEffect(() => {
-        const current = JSON.parse(localStorage.getItem("authUser"));
-        setUser([
-            {
-                displayName: current.displayName,
-                photoURL: current.photoURL,
-            },
-            {
-                displayName: "loc",
-                photoURL: 3,
-            },
-        ]);
-    }, []);
-    useEffect(() => {
+        if (!localProfiles) {
+            setProfiles([
+                {
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
+                },
+            ]);
+        } else if (user.email == localProfiles.email) {
+            setProfiles(localProfiles.data);
+        } else {
+            setProfiles([
+                {
+                    displayName: "Loc",
+                    photoURL: 1,
+                },
+            ]);
+        }
+
         setTimeout(() => {
             setLoading(false);
         }, 3000);
-    }, [user]);
+    }, []);
 
     useEffect(() => {
         setSlideRows(slides[category]);
     }, [slides, category]);
-    //search keyword
+    //search by keyword
     useEffect(() => {
         const fuse = new Fuse(slideRows, { keys: ["data.description", "data.title", "data.genre"] });
         const results = fuse.search(searchTerm).map(({ item }) => item);
@@ -120,6 +130,6 @@ export function BrowseContainer({ slides }) {
             <FooterContainer />
         </>
     ) : (
-        <SelectProfileContainer user={user} setUser={setUser} setProfile={setProfile} />
+        <SelectProfileContainer user={user} profiles={profiles} setProfiles={setProfiles} setProfile={setProfile} />
     );
 }
