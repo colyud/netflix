@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Title, List, Item, Picture, Name, ManageBtn, Edit, Form, Text, Input, ButtonCon, Button } from "./styles/profiles";
+import { Container, Title, List, Item, Picture, Name, ManageBtn, Edit, Form, Text, Input, ButtonCon, Button, Error } from "./styles/profiles";
 
 export default function Profiles({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>;
@@ -52,4 +52,7 @@ Profiles.ButtonCon = function ProfilesButtonCon({ children, ...restProps }) {
 };
 Profiles.Button = function ProfilesButton({ children, ...restProps }) {
     return <Button {...restProps}>{children}</Button>;
+};
+Profiles.Error = function ProfilesButton({ children, ...restProps }) {
+    return <Error {...restProps}>{children}</Error>;
 };

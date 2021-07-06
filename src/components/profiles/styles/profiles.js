@@ -144,3 +144,8 @@ export const Button = styled.button`
     color: #606060;
     ${({ submit }) => submit && "background:white"};
 `;
+export const Error = styled.p`
+    background: #cf6679;
+    color: #000;
+    padding: 0.5em;
+`;

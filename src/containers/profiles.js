@@ -4,9 +4,11 @@ import * as ROUTES from "../constants/routes";
 
 export function SelectProfileContainer({ user, profiles, setProfiles, setProfile }) {
     const [manage, setManage] = useState(false);
-    const [editProfile, setEitProfile] = useState({});
+    const [editProfile, setEditProfile] = useState({});
+    const [addProfile, setAddProfile] = useState(false);
     const [editName, setEditName] = useState("");
     const [editPhoto, setEditPhoto] = useState("");
+    const [error, setError] = useState(false);
 
     localStorage.setItem("profiles", JSON.stringify({ data: profiles, email: user.email }));
 
@@ -35,7 +37,7 @@ export function SelectProfileContainer({ user, profiles, setProfiles, setProfile
                             <Profiles.Edit
                                 manage={manage}
                                 onClick={() => {
-                                    setEitProfile({ data: item, index: index });
+                                    setEditProfile({ data: item, index: index });
                                     setEditName(item.displayName);
                                     setEditPhoto(item.photoURL);
                                 }}
@@ -45,36 +47,61 @@ export function SelectProfileContainer({ user, profiles, setProfiles, setProfile
                         </Profiles.User>
                     ))}
                     <Profiles.User>
-                        <Profiles.Picture src="add" svg />
+                        <Profiles.Picture
+                            src="add"
+                            svg
+                            onClick={() => {
+                                if (profiles.length < 5) {
+                                    setAddProfile(!addProfile);
+                                }
+                            }}
+                        />
                         <Profiles.Name>Add profile</Profiles.Name>
                     </Profiles.User>
                 </Profiles.List>
 
                 <Profiles.ManageBtn onClick={() => setManage(!manage)}>Manage Profiles</Profiles.ManageBtn>
 
-                {editProfile.data && (
+                {editProfile.data || addProfile ? (
                     <Profiles.Form>
                         <Profiles.Text>Edit Profile</Profiles.Text>
                         <Profiles.Input value={editName} onChange={(e) => setEditName(e.target.value)} />
-                        <Profiles.Input value={editPhoto} onChange={(e) => setEditPhoto(e.target.value)} />
+                        <Profiles.Input type="number" min="1" max="5" value={editPhoto} onChange={(e) => setEditPhoto(e.target.value)} />
+                        {error && <Profiles.Error>photo url MUST greater than 0 and lower than 6</Profiles.Error>}
                         <Profiles.ButtonCon>
                             <Profiles.Button
                                 submit
                                 onClick={() => {
-                                    setProfiles(
-                                        profiles.map((item, i) =>
-                                            editProfile.index === i ? { ...item, displayName: editName, photoURL: editPhoto } : item
-                                        )
-                                    );
-                                    setEitProfile({});
+                                    if (editPhoto > 5 || editPhoto < 1) {
+                                        setError(true);
+                                    } else if (addProfile) {
+                                        setProfiles([...profiles, { displayName: editName, photoURL: editPhoto }]);
+                                        setAddProfile(false);
+                                        setError(false);
+                                    } else {
+                                        setProfiles(
+                                            profiles.map((item, i) =>
+                                                editProfile.index === i ? { ...item, displayName: editName, photoURL: editPhoto } : item
+                                            )
+                                        );
+                                        setEditProfile({});
+                                        setError(false);
+                                    }
                                 }}
                             >
                                 Submit
                             </Profiles.Button>
-                            <Profiles.Button onClick={() => setEitProfile({})}>Cancel</Profiles.Button>
+                            <Profiles.Button
+                                onClick={() => {
+                                    setEditProfile({});
+                                    setAddProfile(false);
+                                }}
+                            >
+                                Cancel
+                            </Profiles.Button>
                         </Profiles.ButtonCon>
                     </Profiles.Form>
-                )}
+                ) : null}
             </Profiles>
         </>
     );
