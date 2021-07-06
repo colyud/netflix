@@ -65,9 +65,16 @@ export function SelectProfileContainer({ user, profiles, setProfiles, setProfile
                 {editProfile.data || addProfile ? (
                     <Profiles.Form>
                         <Profiles.Text>Edit Profile</Profiles.Text>
-                        <Profiles.Input value={editName} onChange={(e) => setEditName(e.target.value)} />
-                        <Profiles.Input type="number" min="1" max="5" value={editPhoto} onChange={(e) => setEditPhoto(e.target.value)} />
-                        {error && <Profiles.Error>photo url MUST greater than 0 and lower than 6</Profiles.Error>}
+                        <Profiles.Input placeholder="name" value={editName} onChange={(e) => setEditName(e.target.value)} />
+                        <Profiles.Input
+                            placeholder="photo number"
+                            type="number"
+                            min="1"
+                            max="5"
+                            value={editPhoto}
+                            onChange={(e) => setEditPhoto(e.target.value)}
+                        />
+                        {error && <Profiles.Error>photo number MUST greater than 0 and lower than 6</Profiles.Error>}
                         <Profiles.ButtonCon>
                             <Profiles.Button
                                 submit

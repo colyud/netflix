@@ -130,6 +130,7 @@ export const Input = styled.input`
     height: 32px;
     font-size: 24px;
     padding-left: 0.5em;
+    margin-bottom: 1em;
 `;
 export const ButtonCon = styled.div`
     display: flex;
