@@ -1,12 +1,7 @@
 import React from "react";
-import { ThemeContext } from "styled-components";
-import { useContext } from "react";
-// const theme = useContext(ThemeContext);
 import { Container, Title, Break, Row, Column, Text, Link } from "./styles/footer";
 
 export default function Footer({ children, ...restProps }) {
-    const theme = useContext(ThemeContext);
-    console.log(theme);
     return <Container {...restProps}> {children}</Container>;
 }
 

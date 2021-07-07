@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { GlobalStyles } from "./global-styles";
-import { theme } from "./theme.js";
 import { App } from "./app";
 import { FirebaseContext } from "./context/firebase";
 import { ThemeProvider } from "styled-components";
+import { ThemeContextProvider, ThemeContext } from "./context/theme-context";
 
 const config = {
     apiKey: "AIzaSyBr8EQsNXudn5shPJ5QZJZnA598mfMlsPg",
@@ -16,12 +16,24 @@ const config = {
 };
 window.firebase.initializeApp(config);
 
-ReactDOM.render(
-    <FirebaseContext.Provider value={{ firebase: window.firebase }}>
-        <ThemeProvider theme={theme}>
+const Index = () => {
+    const { curTheme } = useContext(ThemeContext);
+
+    return (
+        <ThemeProvider theme={curTheme}>
             <GlobalStyles />
             <App />
         </ThemeProvider>
-    </FirebaseContext.Provider>,
+    );
+};
+
+ReactDOM.render(
+    <>
+        <FirebaseContext.Provider value={{ firebase: window.firebase }}>
+            <ThemeContextProvider>
+                <Index />
+            </ThemeContextProvider>
+        </FirebaseContext.Provider>
+    </>,
     document.getElementById("root")
 );

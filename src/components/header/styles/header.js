@@ -76,6 +76,7 @@ export const Logo = styled.img`
 export const Group = styled.div`
     display: flex;
     align-items: center;
+    ${({ asd }) => asd && "background:#000;padding:1.5em 2em; border-radius:15px;"}
 `;
 
 export const Text = styled.p`
@@ -217,4 +218,16 @@ export const Profile = styled.div`
         display: flex;
         flex-direction: column;
     }
+`;
+export const ThemeBtn = styled.button`
+    width: 35px;
+    height: 35px;
+    padding: 10px 0;
+    border: 0;
+    font-size: 20px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 `;

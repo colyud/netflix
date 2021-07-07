@@ -17,6 +17,7 @@ import {
     Profile,
     Picture,
     Dropdown,
+    ThemeBtn,
 } from "./styles/header";
 
 export default function Header({ bg = true, children, ...restProps }) {
@@ -91,4 +92,8 @@ Header.Picture = function HeaderPicture({ src, ...restProps }) {
 
 Header.Dropdown = function HeaderDRopdown({ children, ...restProps }) {
     return <Dropdown {...restProps}>{children}</Dropdown>;
+};
+
+Header.ThemeBtn = function HeaderDRopdown({ children, ...restProps }) {
+    return <ThemeBtn {...restProps}>{children}</ThemeBtn>;
 };
