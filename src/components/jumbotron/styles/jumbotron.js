@@ -28,12 +28,12 @@ export const Item = styled.div`
     display: flex;
     border-bottom: 8px solid #222;
     padding: 50px 5%;
-    color: white;
+    color: ${({ theme }) => theme.color};
     overflow: hidden;
 `;
 
 export const Container = styled.section`
-    background-color: black;
+    background-color: ${({ theme }) => theme.background};
 
     @media (max-width: 1000px) {
         ${Item}:last-of-type h2 {
