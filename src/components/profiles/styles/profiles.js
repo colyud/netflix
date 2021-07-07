@@ -90,7 +90,8 @@ export const ManageBtn = styled.button`
 
 export const Edit = styled.div`
     position: absolute;
-    background: url("/images/icons/close.png");
+    background: url("/images/icons/edit.png");
+    background-repeat: no-repeat;
     filter: invert(1);
     z-index: 10;
     max-width: 50px;
