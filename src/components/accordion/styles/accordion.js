@@ -1,14 +1,9 @@
-import withReveal from "react-reveal/withReveal";
-import Fade from "react-reveal/Fade";
 import styled from "styled-components";
 
-export const Container = withReveal(
-    styled.section`
-        display: flex;
-        border-bottom: 8px solid ${({ theme }) => theme.secondary};
-    `,
-    <Fade bottom duration={2000} />
-);
+export const Container = styled.section`
+    display: flex;
+    border-bottom: 8px solid ${({ theme }) => theme.secondary};
+`;
 
 export const Frame = styled.div`
     margin-bottom: 10px;
