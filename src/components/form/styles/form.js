@@ -5,7 +5,8 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     min-height: 660px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: ${({ theme }) => theme.background + "cc"};
+    opacity: 0.9;
     border-radius: 5px;
     box-sizing: border-box;
     width: 100%;
@@ -16,11 +17,11 @@ export const Container = styled.section`
 `;
 
 export const Error = styled.div`
-    background: #e87c03;
+    background: ${({ theme }) => theme.error};
     border-radius: 4px;
     font-size: 14px;
     margin: 0 0 16px;
-    color: white;
+    color: ${({ theme }) => theme.onError};
     padding: 15px 20px;
 `;
 
@@ -32,7 +33,7 @@ export const Base = styled.form`
 `;
 
 export const Title = styled.h1`
-    color: #fff;
+    color: ${({ theme }) => theme.color};
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 28px;
@@ -52,7 +53,7 @@ export const TextSmall = styled.h2`
 `;
 
 export const Link = styled(ReachRouterLink)`
-    color: #fff;
+    color: ${({ theme }) => theme.color};
     text-decoration: none;
 
     &:hover {
@@ -61,10 +62,10 @@ export const Link = styled(ReachRouterLink)`
 `;
 
 export const Input = styled.input`
-    background: #333;
+    background: ${({ theme }) => theme.input};
     border-radius: 4px;
     border: 0;
-    color: #fff;
+    color: ${({ theme }) => theme.color};
     height: 50px;
     line-height: 50px;
     padding: 5px 20px;
@@ -76,7 +77,7 @@ export const Input = styled.input`
 `;
 
 export const Submit = styled.button`
-    background: #e50914;
+    background: ${({ theme }) => theme.primary};
     border-radius: 4px;
     font-size: 16px;
     font-weight: bold;

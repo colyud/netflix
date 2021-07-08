@@ -62,7 +62,7 @@ export default function Signup() {
                         </Form.Submit>
 
                         <Form.Text>
-                            Already a user? <Form.Link to="/signin">Sign up now.</Form.Link>
+                            Already a user? <Form.Link to="/signin">Sign in now.</Form.Link>
                         </Form.Text>
                         <Form.TextSmall>This page is protected by Google reCAPTCHA.</Form.TextSmall>
                     </Form.Base>
