@@ -18,6 +18,7 @@ export const Input = styled.input`
     width: 100%;
     border: 0;
     padding: 10px;
+    font-size: 1em;
     height: 70px;
     box-sizing: border-box;
     color: ${({ theme }) => theme.background};
