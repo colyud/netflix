@@ -2,14 +2,14 @@ export const themes = {
     data: {
         light: {
             background: "#ffffff",
-            color: "#121212",
+            color: "#000",
             error: "#b00020",
             onError: "#fff",
             primary: "#f40612",
             secondary: "#e3e3e3",
         },
         dark: {
-            background: "#121212",
+            background: "#000",
             color: "#fff",
             error: "#cf6679",
             onError: "#000",
