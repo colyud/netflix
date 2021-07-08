@@ -24,7 +24,7 @@ export const Inner = styled.div`
 `;
 
 export const Item = styled.div`
-    color: white;
+    color: ${({ theme }) => theme.color};
     margin-bottom: 10px;
 
     &:first-of-type {
@@ -37,7 +37,7 @@ export const Title = styled.h1`
     line-height: 1.1;
     margin-top: 0;
     margin-bottom: 8px;
-    color: white;
+    color: ${({ theme }) => theme.color};
     text-align: center;
 
     @media (max-width: 600px) {
@@ -53,7 +53,7 @@ export const Header = styled.div`
     margin-bottom: 1px;
     font-size: 26px;
     font-weight: normal;
-    background: #303030;
+    background: ${({ theme }) => theme.secondary};
     padding: 0.8em 1.2em 0.8em 1.2em;
     user-select: none;
     align-items: center;
@@ -61,6 +61,7 @@ export const Header = styled.div`
 
     img {
         filter: brightness(0) invert(1);
+        ${({ theme }) => theme.color == "#000" && "filter: brightness(0) invert(0);"};
         width: 24px;
 
         @media (max-width: 600px) {
@@ -79,7 +80,7 @@ export const Body = styled.div`
     font-size: 26px;
     font-weight: normal;
     line-height: normal;
-    background: #303030;
+    background: ${({ theme }) => theme.secondary};
     padding: 0.8em 1.2em 0.8em 1.2em;
     user-select: none;
     align-items: center;

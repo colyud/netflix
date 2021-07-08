@@ -5,7 +5,7 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     min-height: 660px;
-    background-color: ${({ theme }) => theme.background + "cc"};
+    background-color: ${({ theme }) => theme.background};
     opacity: 0.9;
     border-radius: 5px;
     box-sizing: border-box;
@@ -62,7 +62,7 @@ export const Link = styled(ReachRouterLink)`
 `;
 
 export const Input = styled.input`
-    background: ${({ theme }) => theme.input};
+    background: ${({ theme }) => theme.secondary};
     border-radius: 4px;
     border: 0;
     color: ${({ theme }) => theme.color};

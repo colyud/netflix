@@ -6,7 +6,7 @@ export const themes = {
             error: "#b00020",
             onError: "#fff",
             primary: "#f40612",
-            input: "#aaa",
+            secondary: "#e3e3e3",
         },
         dark: {
             background: "#000000",
@@ -14,7 +14,7 @@ export const themes = {
             error: "#cf6679",
             onError: "#000",
             primary: "#f40612",
-            input: "#333",
+            secondary: "#303030",
         },
     },
 };
