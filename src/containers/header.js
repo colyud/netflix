@@ -8,7 +8,7 @@ export function HeaderContainer({ children }) {
     return (
         <Header>
             <Header.Frame>
-                <Header.Group asd>
+                <Header.Group>
                     <Header.Logo to={ROUTES.HOME} src="/images/misc/logo.svg" alt="Netflix" />
                     <Header.ThemeBtn onClick={() => setIsDark((prevMode) => !prevMode)}>{isDark ? "☀️" : "🌙"}</Header.ThemeBtn>
                 </Header.Group>

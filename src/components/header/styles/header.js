@@ -76,7 +76,7 @@ export const Logo = styled.img`
 export const Group = styled.div`
     display: flex;
     align-items: center;
-    ${({ asd }) => asd && "background:#000;padding:1.5em 2em; border-radius:15px;"}
+    ${({ toggle }) => toggle && "background:#000;padding:1em 2em; border-radius:15px;"}
 `;
 
 export const Text = styled.p`

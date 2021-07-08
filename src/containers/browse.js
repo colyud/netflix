@@ -3,6 +3,7 @@ import Fuse from "fuse.js";
 import { Card, Loading, Header, Player } from "../components";
 import * as ROUTES from "../constants/routes";
 import { FirebaseContext } from "../context/firebase";
+import { ThemeContext } from "../context/theme-context";
 import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
 import { useAuthListener } from "../hooks";
@@ -14,6 +15,7 @@ export function BrowseContainer({ slides }) {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [slideRows, setSlideRows] = useState([]);
+    const { isDark, setIsDark } = useContext(ThemeContext);
 
     const { firebase } = useContext(FirebaseContext);
 
@@ -66,8 +68,9 @@ export function BrowseContainer({ slides }) {
 
             <Header src="joker1" dontShowOnSmallViewPort>
                 <Header.Frame>
-                    <Header.Group>
+                    <Header.Group toggle>
                         <Header.Logo to={ROUTES.HOME} src="/images/misc/logo.svg" alt="Netflix" />
+                        <Header.ThemeBtn onClick={() => setIsDark((prevMode) => !prevMode)}>{isDark ? "☀️" : "🌙"}</Header.ThemeBtn>
                         <Header.Link active={category === "series" ? "true" : "false"} onClick={() => setCategory("series")}>
                             Series
                         </Header.Link>
