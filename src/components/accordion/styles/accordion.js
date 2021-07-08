@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Container = withReveal(
     styled.section`
         display: flex;
-        border-bottom: 8px solid #222;
+        border-bottom: 8px solid ${({ theme }) => theme.secondary};
     `,
     <Fade bottom duration={2000} />
 );
@@ -61,7 +61,7 @@ export const Header = styled.div`
 
     img {
         filter: brightness(0) invert(1);
-        ${({ theme }) => theme.color == "#000" && "filter: brightness(0) invert(0);"};
+        ${({ theme }) => theme.color == "#121212" && "filter: brightness(0) invert(0);"};
         width: 24px;
 
         @media (max-width: 600px) {

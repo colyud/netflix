@@ -26,7 +26,7 @@ export const Pane = styled.div`
 
 export const Item = styled.div`
     display: flex;
-    border-bottom: 8px solid #222;
+    border-bottom: 8px solid ${({ theme }) => theme.secondary};
     padding: 50px 5%;
     color: ${({ theme }) => theme.color};
     overflow: hidden;

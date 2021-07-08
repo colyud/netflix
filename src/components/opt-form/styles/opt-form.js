@@ -20,13 +20,15 @@ export const Input = styled.input`
     padding: 10px;
     height: 70px;
     box-sizing: border-box;
+    color: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.color};
 `;
 
 export const Button = styled.button`
     display: flex;
     align-items: center;
     height: 70px;
-    background: #e50914;
+    background: ${({ theme }) => theme.primary};
     color: white;
     text-transform: uppercase;
     padding: 0 32px;
@@ -37,6 +39,7 @@ export const Button = styled.button`
     img {
         margin-left: 10px;
         filter: brightness(0) invert(1);
+
         width: 24px;
 
         @media (max-width: 1000px) {
@@ -63,7 +66,7 @@ export const Break = styled.div`
 
 export const Text = styled.p`
     font-size: 19px;
-    color: white;
+    color: #8c8c8c;
     text-align: center;
 
     @media (max-width: 600px) {
