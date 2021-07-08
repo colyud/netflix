@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Header, Profiles } from "../components/";
 import * as ROUTES from "../constants/routes";
+import { ThemeContext } from "../context/theme-context";
 
 export function SelectProfileContainer({ user, profiles, setProfiles, setProfile }) {
     const [manage, setManage] = useState(false);
@@ -10,13 +11,18 @@ export function SelectProfileContainer({ user, profiles, setProfiles, setProfile
     const [editPhoto, setEditPhoto] = useState("");
     const [error, setError] = useState(false);
 
+    const { isDark, setIsDark } = useContext(ThemeContext);
+
     localStorage.setItem("profiles", JSON.stringify({ data: profiles, email: user.email }));
 
     return (
         <>
             <Header bg={false}>
                 <Header.Frame>
-                    <Header.Logo to={ROUTES.HOME} src="/images/misc/logo.svg" alt="Netflix" />
+                    <Header.Group>
+                        <Header.Logo to={ROUTES.HOME} src="/images/misc/logo.svg" alt="Netflix" />
+                        <Header.ThemeBtn onClick={() => setIsDark((prevMode) => !prevMode)}>{isDark ? "☀️" : "🌙"}</Header.ThemeBtn>
+                    </Header.Group>
                 </Header.Frame>
             </Header>
             <Profiles>

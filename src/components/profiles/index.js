@@ -21,8 +21,8 @@ Profiles.User = function ProfilesUser({ children, disabled, ...restProps }) {
     );
 };
 
-Profiles.Picture = function ProfilesPicture({ src, svg, ...restProps }) {
-    return <Picture {...restProps} src={src ? `/images/users/${src}.png` : "/images/misc/loading.gif"} svg={svg ? svg : null} />;
+Profiles.Picture = function ProfilesPicture({ src, ...restProps }) {
+    return <Picture {...restProps} src={src ? `/images/users/${src}.png` : "/images/misc/loading.gif"} />;
 };
 
 Profiles.Name = function ProfilesName({ children, ...restProps }) {

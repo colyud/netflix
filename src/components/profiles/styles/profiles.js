@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
     width: 100%;
-    color: #fff;
+    color: ${({ theme }) => theme.color};
     font-size: 48px;
     text-align: center;
     font-weight: 500;
@@ -31,7 +31,6 @@ export const Name = styled.p`
 
     &:hover {
         font-weight: bold;
-        color: #e5e5e5;
     }
 `;
 
@@ -39,12 +38,13 @@ export const Picture = styled.img`
     width: 100%;
     max-width: 150px;
     height: auto;
-    border: 3px solid black;
+    border: 3px solid ${({ theme }) => theme.background};
     cursor: pointer;
     position: relative;
     z-index: 0;
-    ${"" /* opacity: 0.5; */}
-    ${({ svg }) => svg && "filter:invert(1);border: 3px solid white; opacity:0.3   "}
+    opacity: 1;
+    ${"" /* ${({ svg }) => svg && "filter:invert(1);border: 3px solid white; opacity:0.3;   "} */}
+    ${({ svg, theme }) => (svg ? (theme.color === "#fff" ? "filter:invert(1);border: 0; opacity:0.3;" : "filter:invert(0); opacity:0.3;") : "null")};
     ${({ disabled }) => disabled && "opacity:0.3"}
 `;
 
@@ -57,14 +57,14 @@ export const Item = styled.li`
     position: relative;
 
     &:hover > ${Picture} {
-        border: 3px solid white;
+        border: 3px solid ${({ theme }) => theme.color};
         opacity: 1;
         ${({ disabled }) => disabled && "opacity:0.3"}
     }
 
     &:hover ${Name} {
         font-weight: bold;
-        color: white;
+        color: ${({ theme }) => theme.color};
     }
 
     &:last-of-type {
@@ -76,8 +76,8 @@ export const ManageBtn = styled.button`
     text-transform: uppercase;
     padding: 1em 2em;
     background: 000;
-    color: #fff;
-    opacity: 0.3;
+    color: ${({ theme }) => theme.color};
+    opacity: 0.5;
     margin-top: 5em;
     letter-spacing: 2px;
     cursor: pointer;
@@ -92,6 +92,7 @@ export const Edit = styled.div`
     background: url("/images/icons/edit.png");
     background-repeat: no-repeat;
     filter: invert(1);
+    ${({ theme }) => theme.color === "#121212" && "filter:invert(0);"}
     z-index: 10;
     max-width: 50px;
     max-height: 50px;
@@ -101,6 +102,9 @@ export const Edit = styled.div`
     left: 60px;
     opacity: 0.5;
     display: none;
+    background-color: white;
+    border-radius: 50%;
+    background-position: center;
     ${({ manage }) => manage && "display:block"};
 
     &:hover {
@@ -114,7 +118,7 @@ export const Form = styled.div`
     max-height: 500px;
     width: 100%;
     height: 100%;
-    background: #121212;
+    background: ${({ theme }) => theme.secondary};
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -122,7 +126,7 @@ export const Form = styled.div`
 `;
 export const Text = styled.p`
     font-size: 48px;
-    color: white;
+    color: ${({ theme }) => theme.color};
 `;
 export const Input = styled.input`
     max-width: 300px;
@@ -146,7 +150,7 @@ export const Button = styled.button`
     ${({ submit }) => submit && "background:white"};
 `;
 export const Error = styled.p`
-    background: #cf6679;
-    color: #000;
+    background: ${({ theme }) => theme.error};
+    color: ${({ theme }) => theme.onError};
     padding: 0.5em;
 `;
