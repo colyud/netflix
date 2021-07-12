@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { ThemeContextProvider, ThemeContext } from "./context/theme-context";
 
 const config = {
-    apiKey: process.env.REACT_APP_API_KEY,
+    apiKey: "AIzaSyBr8EQsNXudn5shPJ5QZJZnA598mfMlsPg",
     authDomain: "duyloc-netflix.firebaseapp.com",
     projectId: "duyloc-netflix",
     storageBucket: "duyloc-netflix.appspot.com",
